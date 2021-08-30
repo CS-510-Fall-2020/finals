@@ -807,6 +807,125 @@ findMeans2<-function(set1data.time,set1data.Cadj,set2data.time,set2data.Cadj){
 
 
 
+###############################
+###### Hair Calculations ######
+
+#### Hermit Crabs #####
+
+
+hermithairsset1<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set1/hermithairseffectarea.csv",header=FALSE)
+
+hermithairsset2<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set2/hermithairseffectarea.csv",header=FALSE)
+
+hermithairsset3<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/hermithairseffectarea.csv",header=FALSE)
+
+
+
+
+
+hermitair1.d<-((hermithairsset1$V1+hermithairsset2$V1+hermithairsset3$V1)/n)*hermit.d
+hermitwater1.d<-((hermithairsset1$V2+hermithairsset2$V2+hermithairsset3$V2)/n)*hermit.d
+hermitwaterdair.d<-((hermithairsset1$V3+hermithairsset2$V3+hermithairsset3$V3)/n)*hermit.d
+hermitairdwater.d<-((hermithairsset1$V4+hermithairsset2$V4+hermithairsset3$V4)/n)*hermit.d
+hermitair2.d<-((hermithairsset1$V5+hermithairsset2$V5+hermithairsset3$V5)/n)*hermit.d
+hermitwater2.d<-((hermithairsset1$V6+hermithairsset2$V6+hermithairsset3$V6)/n)*hermit.d
+hermitwaterTswap.d<-((hermithairsset1$V7+hermithairsset2$V7+hermithairsset3$V7)/n)*hermit.d
+hermitairTswap.d<-((hermithairsset1$V8+hermithairsset2$V8+hermithairsset3$V8)/n)*hermit.d
+
+hermitair1totals<-findMeans(hermitair11.totals$V1,hermitair11.totals$V3/hermitair1.d,hermitair12.totals$V1,hermitair12.totals$V3/hermitair1.d,hermitair13.totals$V1,hermitair13.totals$V3/hermitair1.d)
+hermitair1totals$ratios<-hermitair1totals$mean/sum(hermitair1totals$mean)*100
+
+hermitwater1totals<-findMeans(hermitwater11.totals$V1,hermitwater11.totals$V3/hermitwater1.d,hermitwater12.totals$V1,hermitwater12.totals$V3/hermitwater1.d,hermitwater13.totals$V1,hermitwater13.totals$V3/hermitwater1.d)
+hermitwater1totals$ratios<-hermitwater1totals$mean/sum(hermitwater1totals$mean)*100
+
+hermitairdwatertotals<-findMeans(hermitairdwater1.totals$V1,hermitairdwater1.totals$V3/hermitairdwater.d,hermitairdwater2.totals$V1,hermitairdwater2.totals$V3/hermitairdwater.d,hermitairdwater3.totals$V1,hermitairdwater3.totals$V3/hermitairdwater.d)
+hermitairdwatertotals$ratios<-hermitairdwatertotals$mean/sum(hermitairdwatertotals$mean)*100
+
+hermitwaterdairtotals<-findMeans(hermitwaterdair1.totals$V1,hermitwaterdair1.totals$V3/hermitwaterdair.d,hermitwaterdair2.totals$V1,hermitwaterdair2.totals$V3/hermitwaterdair.d,hermitwaterdair3.totals$V1,hermitwaterdair3.totals$V3/hermitwaterdair.d)
+hermitwaterdairtotals$ratios<-hermitwaterdairtotals$mean/sum(hermitwaterdairtotals$mean)*100
+
+hermitair2totals<-findMeans(hermitair21.totals$V1,hermitair21.totals$V3/hermitair2.d,hermitair22.totals$V1,hermitair22.totals$V3/hermitair2.d,hermitair23.totals$V1,hermitair23.totals$V3/hermitair2.d)
+hermitair2totals$ratios<-hermitair2totals$mean/sum(hermitair2totals$mean)*100
+
+hermitwater2totals<-findMeans(hermitwater21.totals$V1,hermitwater21.totals$V3/hermitwater2.d,hermitwater22.totals$V1,hermitwater22.totals$V3/hermitwater2.d,hermitwater23.totals$V1,hermitwater23.totals$V3/hermitwater2.d)
+hermitwater2totals$ratios<-hermitwater2totals$mean/sum(hermitwater2totals$mean)*100
+
+hermitairTswaptotals<-findMeans(hermitairTswap1.totals$V1,hermitairTswap1.totals$V3/hermitairTswap.d,hermitairTswap2.totals$V1,hermitairTswap2.totals$V3/hermitairTswap.d,hermitairTswap3.totals$V1,hermitairTswap3.totals$V3/hermitairTswap.d)
+hermitairTswaptotals$ratios<-hermitairTswaptotals$mean/sum(hermitairTswaptotals$mean)*100
+
+hermitwaterTswaptotals<-findMeans(hermitwaterTswap1.totals$V1,hermitwaterTswap1.totals$V3/hermitwaterTswap.d,hermitwaterTswap2.totals$V1,hermitwaterTswap2.totals$V3/hermitwaterTswap.d,hermitwaterTswap3.totals$V1,hermitwaterTswap3.totals$V3/hermitwaterTswap.d)
+hermitwaterTswaptotals$ratios<-hermitwaterTswaptotals$mean/sum(hermitwaterTswaptotals$mean)*100
+
+
+
+
+
+
+
+
+
+
+
+
+#Setting cutoff for hair inclusion.
+cutoffuse<-1e-10 # Use -1 for all area
+
+
+
+#### Marine Crabs #####
+
+marineair1totals<-findMeans(marineair11.totals$V1,marineair11.totals$V5,marineair12.totals$V1,marineair12.totals$V5,marineair13.totals$V1,marineair13.totals$V5)
+marineair1totals$ratios<-marineair1totals$mean/sum(marineair1totals$mean)*100
+marineair1.numhairs=length(marineair1totals$mean[marineair1totals$mean>=cutoffuse])
+marineair1.d<-marine.d*(marineair1.numhairs/205)
+marineair1totals<-findMeans(marineair11.totals$V1,marineair11.totals$V5/marineair1.d,marineair12.totals$V1,marineair12.totals$V5/marineair1.d,marineair13.totals$V1,marineair13.totals$V5/marineair1.d)
+
+marinewater1totals<-findMeans(marinewater11.totals$V1,marinewater11.totals$V5,marinewater12.totals$V1,marinewater12.totals$V5,marinewater13.totals$V1,marinewater13.totals$V5)
+marinewater1totals$ratios<-marinewater1totals$mean/sum(marinewater1totals$mean)*100
+marinewater1.numhairs=length(marinewater1totals$mean[marinewater1totals$mean>=cutoffuse])
+marinewater1.d<-marine.d*(marinewater1.numhairs/205)
+marinewater1totals<-findMeans(marinewater11.totals$V1,marinewater11.totals$V5/marinewater1.d,marinewater12.totals$V1,marinewater12.totals$V5/marinewater1.d,marinewater13.totals$V1,marinewater13.totals$V5/marinewater1.d)
+
+marineairdwatertotals<-findMeans(marineairdwater1.totals$V1,marineairdwater1.totals$V5,marineairdwater2.totals$V1,marineairdwater2.totals$V5,marineairdwater3.totals$V1,marineairdwater3.totals$V5)
+marineairdwatertotals$ratios<-marineairdwatertotals$mean/sum(marineairdwatertotals$mean)*100
+marineairdwater.numhairs=length(marineairdwatertotals$mean[marineairdwatertotals$mean>=cutoffuse])
+marineairdwater.d<-marine.d*(marineairdwater.numhairs/205)
+marineairdwatertotals<-findMeans(marineairdwater1.totals$V1,marineairdwater1.totals$V5/marineairdwater.d,marineairdwater2.totals$V1,marineairdwater2.totals$V5/marineairdwater.d,marineairdwater2.totals$V1,marineairdwater3.totals$V5/marineairdwater.d)
+
+marinewaterdairtotals<-findMeans(marinewaterdair1.totals$V1,marinewaterdair1.totals$V5,marinewaterdair2.totals$V1,marinewaterdair2.totals$V5,marinewaterdair3.totals$V1,marinewaterdair3.totals$V5)
+marinewaterdairtotals$ratios<-marinewaterdairtotals$mean/sum(marinewaterdairtotals$mean)*100
+marinewaterdair.numhairs=length(marinewaterdairtotals$mean[marinewaterdairtotals$mean>=cutoffuse])
+marinewaterdair.d<-marine.d*(marinewaterdair.numhairs/205)
+marinewaterdairtotals<-findMeans(marinewaterdair1.totals$V1,marinewaterdair1.totals$V5/marinewaterdair.d,marinewaterdair2.totals$V1,marinewaterdair2.totals$V5/marinewaterdair.d,marinewaterdair2.totals$V1,marinewaterdair2.totals$V5/marinewaterdair.d)
+
+marineair2totals<-findMeans(marineair21.totals$V1,marineair21.totals$V5,marineair22.totals$V1,marineair22.totals$V5,marineair22.totals$V1,marineair22.totals$V5)
+marineair2totals$ratios<-marineair2totals$mean/sum(marineair2totals$mean)*100
+marineair2.numhairs=length(marineair2totals$mean[marineair2totals$mean>=cutoffuse])
+marineair2.d<-marine.d*(marineair2.numhairs/205)
+marineair2totals<-findMeans(marineair21.totals$V1,marineair21.totals$V5/marineair2.d,marineair22.totals$V1,marineair22.totals$V5/marineair2.d,marineair22.totals$V1,marineair22.totals$V5/marineair2.d)
+
+marinewater2totals<-findMeans(marinewater21.totals$V1,marinewater21.totals$V5,marinewater22.totals$V1,marinewater22.totals$V5,marinewater23.totals$V1,marinewater23.totals$V5)
+marinewater2totals$ratios<-marinewater2totals$mean/sum(marinewater2totals$mean)*100
+marinewater2.numhairs=length(marinewater2totals$mean[marinewater2totals$mean>=cutoffuse])
+marinewater2.d<-marine.d*(marinewater2.numhairs/205)
+marinewater2totals<-findMeans(marinewater21.totals$V1,marinewater21.totals$V5/marinewater2.d,marinewater22.totals$V1,marinewater22.totals$V5/marinewater2.d,marinewater22.totals$V1,marinewater22.totals$V5/marinewater2.d)
+
+marineairTswaptotals<-findMeans(marineairTswap1.totals$V1,marineairTswap1.totals$V5,marineairTswap2.totals$V1,marineairTswap2.totals$V5,marineairTswap2.totals$V1,marineairTswap2.totals$V5)
+marineairTswaptotals$ratios<-marineairTswaptotals$mean/sum(marineairTswaptotals$mean)*100
+marineairTswap.numhairs=length(marineairTswaptotals$mean[marineairTswaptotals$mean>=cutoffuse])
+marineairTswap.d<-marine.d*(marineairTswap.numhairs/205)
+marineairTswaptotals<-findMeans(marineairTswap1.totals$V1,marineairTswap1.totals$V5/marineairTswap.d,marineairTswap2.totals$V1,marineairTswap2.totals$V5/marineairTswap.d,marineairTswap2.totals$V1,marineairTswap2.totals$V5/marineairTswap.d)
+
+marinewaterTswaptotals<-findMeans(marinewaterTswap1.totals$V1,marinewaterTswap1.totals$V5,marinewaterTswap2.totals$V1,marinewaterTswap2.totals$V5,marinewaterTswap3.totals$V1,marinewaterTswap3.totals$V5)
+marinewaterTswaptotals$ratios<-marinewaterTswaptotals$mean/sum(marinewaterTswaptotals$mean)*100
+marinewaterTswap.numhairs=length(marinewaterTswaptotals$mean[marinewaterTswaptotals$mean>=cutoffuse])
+marinewaterTswap.d<-marine.d*(marinewaterTswap.numhairs/205)
+marinewaterTswaptotals<-findMeans(marinewaterTswap1.totals$V1,marinewaterTswap1.totals$V5/marinewaterTswap.d,marinewaterTswap2.totals$V1,marinewaterTswap2.totals$V5/marinewaterTswap.d,marinewaterTswap2.totals$V1,marinewaterTswap2.totals$V5/marinewaterTswap.d)
+
+
+
+
+
 
 
 
