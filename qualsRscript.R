@@ -693,3 +693,120 @@ require(cowplot)
 
 
 
+
+
+
+n=3   #number of replicates
+
+findMeans<-function(set1data.time,set1data.Cadj,set2data.time,set2data.Cadj,set3data.time,set3data.Cadj){
+  if(length(set1data.Cadj)==length(set2data.Cadj) & length(set2data.Cadj)==length(set3data.Cadj)){		
+    meanCadj<-matrix(0,length(set1data.time),1)
+    SDCadj<-matrix(0,length(set1data.time),1)
+    flux<-matrix(0,length(set1data.time),1)
+    for (i in 1:length(set1data.time)){
+      a<-c(set1data.Cadj[i],set2data.Cadj[i],set3data.Cadj[i])
+      meanCadj[i]<-mean(a)
+      SDCadj[i]<-sd(a)
+    }
+    for(i in 2:length(flux)){
+      flux[i] = abs(meanCadj[i+1]-meanCadj[i])/abs(set1data.time[i+1]-set1data.time[i])
+    }
+    dataresult<-data.frame(set1data.time,set1data.Cadj,set2data.Cadj,set3data.Cadj,meanCadj,SDCadj,flux)
+    names(dataresult)<-c("time","set1","set2","set3","mean","SD","flux")
+    return(dataresult)
+    
+  } else{
+    if(length(set1data.Cadj)<=length(set2data.Cadj) & length(set1data.Cadj)<=length(set3data.Cadj)){
+      timeint<-set1data.time
+    } else if (length(set2data.Cadj)<=length(set1data.Cadj) & length(set2data.Cadj)<=length(set3data.Cadj)) {
+      timeint<-set2data.time
+    } else if(length(set3data.Cadj)<=length(set1data.Cadj) & length(set3data.Cadj)<=length(set2data.Cadj)) {
+      timeint<-set3data.time	
+    } else {
+      timeint<-set1data.time
+    }
+    set1dataint.Cadj<-interp1(set1data.time,set1data.Cadj,timeint,method=c("linear"),extrap=FALSE)
+    set2dataint.Cadj<-interp1(set2data.time,set2data.Cadj,timeint,method=c("linear"),extrap=FALSE)
+    set3dataint.Cadj<-interp1(set3data.time,set3data.Cadj,timeint,method=c("linear"),extrap=FALSE)
+    
+    meanCadj<-matrix(0,length(timeint),1)		
+    SDCadj<-matrix(0,length(timeint),1)
+    flux<-matrix(0,length(timeint),1)
+    for (i in 1:length(timeint)){
+      a<-c(set1dataint.Cadj[i],set2dataint.Cadj[i],set3dataint.Cadj[i])
+      meanCadj[i]<-mean(a)
+      SDCadj[i]<-sd(a)
+    }
+    for(i in 2:length(flux)){
+      flux[i] = abs(meanCadj[i+1]-meanCadj[i])/abs(timeint[i+1]-timeint[i])
+    }
+    
+    
+    dataresult<-data.frame(timeint,set1dataint.Cadj,set2dataint.Cadj,set3dataint.Cadj,meanCadj,SDCadj,flux)
+    names(dataresult)<-c("time","set1","set2","set3","mean","SD","flux")
+    return(dataresult)
+  }
+}
+
+
+
+
+findMeans2<-function(set1data.time,set1data.Cadj,set2data.time,set2data.Cadj){
+  if(length(set1data.Cadj)==length(set2data.Cadj)){		
+    meanCadj<-matrix(0,length(set1data.time),1)
+    SDCadj<-matrix(0,length(set1data.time),1)
+    flux<-matrix(0,length(set1data.time),1)
+    for (i in 1:length(set1data.time)){
+      a<-c(set1data.Cadj[i],set2data.Cadj[i])
+      meanCadj[i]<-mean(a)
+      SDCadj[i]<-sd(a)
+    }
+    #for(i in 2:length(flux)){
+    #	flux[i] = abs(meanCadj[i+1]-meanCadj[i])/abs(set1data.time[i+1]-set1data.time[i])
+    #}
+    dataresult<-data.frame(set1data.time,set1data.Cadj,set2data.Cadj,meanCadj,SDCadj,flux)
+    names(dataresult)<-c("time","set1","set2","mean","SD","flux")
+    return(dataresult)
+    
+  } else{
+    if(length(set1data.Cadj)<=length(set2data.Cadj)){
+      timeint<-set1data.time
+    } else if (length(set2data.Cadj)<=length(set1data.Cadj) & length(set2data.Cadj)<=length(set3data.Cadj)) {
+      timeint<-set2data.time
+      #} else if(length(set3data.Cadj)<=length(set1data.Cadj) & length(set3data.Cadj)<=length(set2data.Cadj)) {
+      #	timeint<-set3data.time	
+    } else {
+      timeint<-set1data.time
+    }
+    set1dataint.Cadj<-interp1(set1data.time,set1data.Cadj,timeint,method=c("linear"),extrap=FALSE)
+    set2dataint.Cadj<-interp1(set2data.time,set2data.Cadj,timeint,method=c("linear"),extrap=FALSE)
+    
+    
+    meanCadj<-matrix(0,length(timeint),1)		
+    SDCadj<-matrix(0,length(timeint),1)
+    flux<-matrix(0,length(timeint),1)
+    for (i in 1:length(timeint)){
+      a<-c(set1dataint.Cadj[i],set2dataint.Cadj[i])
+      meanCadj[i]<-mean(a)
+      SDCadj[i]<-sd(a)
+    }
+    for(i in 2:length(flux)){
+      flux[i] = abs(meanCadj[i+1]-meanCadj[i])/abs(timeint[i+1]-timeint[i])
+    }
+    
+    
+    dataresult<-data.frame(timeint,set1dataint.Cadj,set2dataint.Cadj,meanCadj,SDCadj,flux)
+    names(dataresult)<-c("time","set1","set2","mean","SD","flux")
+    return(dataresult)
+  }
+}
+
+
+
+
+
+
+
+
+
+
