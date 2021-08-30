@@ -451,3 +451,222 @@ hermitairTswap2.totals$V3<-hermitairTswap2.totals$V3/hermit.d      #Uncomment fo
 
 
 
+
+
+
+##############
+##############
+
+
+##### Loads Set 3 Data #####
+
+# Values of Cinf for each case. 
+cinf3.marinewater<-0.053844453778029  #Blue crab in water
+cinf3.marineair<-0.037957737240439    #Blue crab in air
+cinf3.hermitair<- 0.526007400705351	 #Terrestrial crab in air
+cinf3.hermitwater<- 0.537114520259193  	 #Terrestrial crab in water
+
+
+# Loads data, Blue crab in water, Condition 1
+marinewater13.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3302_marinewater.csv",header=FALSE)
+summary(marinewater13.perstepdata)
+marinewater13.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3302_marinewater.csv",header=FALSE)
+summary(marinewater13.totals)
+
+# Loads data, Blue crab in water PIV with air D coefficient, Condition 1
+marinewaterdair3.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3317_marinewaterDswap.csv",header=FALSE)
+summary(marinewaterdair3.perstepdata)
+marinewaterdair3.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3317_marinewaterDswap.csv",header=FALSE)
+summary(marinewaterdair3.totals)
+
+
+# Loads data, Blue crab in air, Condition 1
+marineair13.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3308_marineair.csv",header=FALSE)
+summary(marineair13.perstepdata)
+marineair13.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3308_marineair.csv",header=FALSE)
+summary(marineair13.totals)
+
+# Loads data, Blue crab in air PIV with water D coefficient
+marineairdwater3.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3314_marineairDswap.csv",header=FALSE)
+summary(marineairdwater3.perstepdata)
+marineairdwater3.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3314_marineairDswap.csv",header=FALSE)
+summary(marineairdwater3.totals)
+
+# Loads data, Blue crab in water, Condition 2
+marinewater23.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3305_marinewater.csv",header=FALSE)
+summary(marinewater23.perstepdata)
+marinewater23.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3305_marinewater.csv",header=FALSE)
+summary(marinewater23.totals)
+
+# Loads data, Blue crab in water long duration, condition 2
+marinewaterTswap3.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3323_marinewaterTswap.csv",header=FALSE)
+summary(marinewaterTswap3.perstepdata)
+marinewaterTswap3.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3323_marinewaterTswap.csv",header=FALSE)
+summary(marinewaterTswap3.totals)
+
+# Loads data, Blue crab in air, Condition 2
+marineair23.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3311_marineair.csv",header=FALSE)
+summary(marineair23.perstepdata)
+marineair23.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3311_marineair.csv",header=FALSE)
+summary(marineair23.totals)
+
+# Loads data, Blue crab in air long duration, condition 2
+marineairTswap3.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3320_marineairTswap.csv",header=FALSE)
+summary(marineairTswap3.perstepdata)
+marineairTswap3.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3320_marineairTswap.csv",header=FALSE)
+summary(marineairTswap3.totals)
+
+# Creates C/Cinf for per time step data, Condition 1
+marinewater13.perstepdata$C<-marinewater13.perstepdata$V2/cinf3.marinewater
+marineair13.perstepdata$C<-marineair13.perstepdata$V2/cinf3.marineair
+marinewaterdair3.perstepdata$C<-marinewaterdair3.perstepdata$V2/cinf3.marineair
+marineairdwater3.perstepdata$C<-marineairdwater3.perstepdata$V2/cinf3.marinewater
+
+
+# Adjusts for capture distance.
+marinewater13.perstepdata$Cadj<-marinewater13.perstepdata$C/marine.d
+marineair13.perstepdata$Cadj<-marineair13.perstepdata$C/marine.d
+marinewaterdair3.perstepdata$Cadj<-marinewaterdair3.perstepdata$C/marine.d
+marineairdwater3.perstepdata$Cadj<-marineairdwater3.perstepdata$C/marine.d
+
+
+# Creates C/Cinf for per hair data, Condition 1
+marinewater13.totals$V5<-marinewater13.totals$V5/cinf3.marinewater
+marinewater13.totals$V5<-marinewater13.totals$V5/marine.d  #Uncomment for standardizing per hair data by capture area
+marineair13.totals$V5<-marineair13.totals$V5/cinf3.marineair
+marineair13.totals$V5<-marineair13.totals$V5/marine.d      #Uncomment for standardizing per hair data by capture area
+marinewaterdair3.totals$V5<-marinewaterdair3.totals$V5/cinf3.marineair
+marinewaterdair3.totals$V5<-marinewaterdair3.totals$V5/marine.d  #Uncomment for standardizing per hair data by capture area
+marineairdwater3.totals$V5<-marineairdwater3.totals$V5/cinf3.marinewater
+marineairdwater3.totals$V5<-marineairdwater3.totals$V5/marine.d      #Uncomment for standardizing per hair data by capture area
+
+
+# Creates C/Cinf for per time step data, Condition 2
+marinewater23.perstepdata$C<-marinewater23.perstepdata$V2/cinf3.marinewater
+marineair23.perstepdata$C<-marineair23.perstepdata$V2/cinf3.marineair
+
+
+
+# Adjusts for capture distance.
+marinewater23.perstepdata$Cadj<-marinewater23.perstepdata$C/marine.d
+marineair23.perstepdata$Cadj<-marineair23.perstepdata$C/marine.d
+marinewaterTswap3.perstepdata$C<-marinewaterTswap3.perstepdata$V2/cinf3.marinewater
+marineairTswap3.perstepdata$C<-marineairTswap3.perstepdata$V2/cinf3.marineair
+marinewaterTswap3.perstepdata$Cadj<-marinewaterTswap3.perstepdata$C/marine.d
+marineairTswap3.perstepdata$Cadj<-marineairTswap3.perstepdata$C/marine.d
+
+
+# Creates C/Cinf for per hair data, Condition 2
+marinewater23.totals$V5<-marinewater23.totals$V5/cinf3.marinewater
+marinewater23.totals$V5<-marinewater23.totals$V5/marine.d  #Uncomment for standardizing per hair data by capture area
+marinewaterTswap3.totals$V5<-marinewaterTswap3.totals$V5/cinf3.marinewater
+marinewaterTswap3.totals$V5<-marinewaterTswap3.totals$V5/marine.d  #Uncomment for standardizing per hair data by capture area
+marineair23.totals$V5<-marineair23.totals$V5/cinf3.marineair
+marineair23.totals$V5<-marineair23.totals$V5/marine.d      #Uncomment for standardizing per hair data by capture area
+marineairTswap3.totals$V5<-marineairTswap3.totals$V5/cinf3.marineair
+marineairTswap3.totals$V5<-marineairTswap3.totals$V5/marine.d      #Uncomment for standardizing per hair data by capture area
+
+
+
+# Loads data, Terrestrial crab in water, Condition 1
+hermitwater13.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3173_hermitwater.csv",header=FALSE)
+summary(hermitwater13.perstepdata)
+hermitwater13.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3173_hermitwater.csv",header=FALSE)
+summary(hermitwater13.totals)
+
+# Loads data, Terrestrial crab in water PIV with air D coefficient
+hermitwaterdair3.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3178_hermitwaterDswap.csv",header=FALSE)
+summary(hermitwaterdair3.perstepdata)
+hermitwaterdair3.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3178_hermitwaterDswap.csv",header=FALSE)
+summary(hermitwaterdair3.totals)
+
+# Loads data, Terrestrial crab in air
+hermitair13.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3175_hermitair.csv",header=FALSE)
+summary(hermitair13.perstepdata)
+hermitair13.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3175_hermitair.csv",header=FALSE)
+summary(hermitair13.totals)
+
+# Loads data, Terrestrial crab in air PIV with water D coefficient
+hermitairdwater3.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3177_hermitairDswap.csv",header=FALSE)
+summary(hermitairdwater3.perstepdata)
+hermitairdwater3.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3177_hermitairDswap.csv",header=FALSE)
+summary(hermitairdwater3.totals)
+
+
+
+# Loads data, Terrestrial crab in water, Condition 2
+hermitwater23.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3174_hermitwater.csv",header=FALSE)
+summary(hermitwater23.perstepdata)
+hermitwater23.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3174_hermitwater.csv",header=FALSE)
+summary(hermitwater23.totals)
+
+# Loads data, Terrestrial crab in water, short duration of marine crab
+hermitwaterTswap3.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3180_hermitwaterTswap.csv",header=FALSE)
+summary(hermitwaterTswap3.perstepdata)
+hermitwaterTswap3.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3180_hermitwaterTswap.csv",header=FALSE)
+summary(hermitwaterTswap3.totals)
+
+# Loads data, Terrestrial crab in air, Condition 2
+hermitair23.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3176_hermitair.csv",header=FALSE)
+summary(hermitair23.perstepdata)
+hermitair23.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3176_hermitair.csv",header=FALSE)
+summary(hermitair23.totals)
+
+# Loads data, Terrestrial crab in water, short duration of marine crab
+hermitairTswap3.perstepdata<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/pertimestep_3179_hermitairTswap.csv",header=FALSE)
+summary(hermitairTswap3.perstepdata)
+hermitairTswap3.totals<-read.csv("C:/Users/isaac/OneDrive/Desktop/cs510-qe-aug2021-nwimozu-main/practical/set3/totalhairs_3179_hermitairTswap.csv",header=FALSE)
+summary(hermitairTswap3.totals)
+
+# Creates C/Cinf for per time step data, Condition 1
+hermitwater13.perstepdata$C<-hermitwater13.perstepdata$V2/cinf3.hermitwater
+hermitair13.perstepdata$C<-hermitair13.perstepdata$V2/cinf3.hermitair
+hermitwaterdair3.perstepdata$C<-hermitwaterdair3.perstepdata$V2/cinf3.hermitair
+hermitairdwater3.perstepdata$C<-hermitairdwater3.perstepdata$V2/cinf3.hermitwater
+
+
+# Adjusts for capture distance.
+hermitwater13.perstepdata$Cadj<-hermitwater13.perstepdata$C/hermit.d
+hermitair13.perstepdata$Cadj<-hermitair13.perstepdata$C/hermit.d
+hermitwaterdair3.perstepdata$Cadj<-hermitwaterdair3.perstepdata$C/hermit.d
+hermitairdwater3.perstepdata$Cadj<-hermitairdwater3.perstepdata$C/hermit.d
+
+# Creates C/Cinf for per hair data
+hermitwater13.totals$V3<-hermitwater13.totals$V3/cinf3.hermitwater
+hermitwater13.totals$V3<-hermitwater13.totals$V3/hermit.d  #Uncomment for standardizing per hair data by capture area
+hermitair13.totals$V3<-hermitair13.totals$V3/cinf3.hermitair
+hermitair13.totals$V3<-hermitair13.totals$V3/hermit.d      #Uncomment for standardizing per hair data by capture area
+hermitairdwater3.totals$V3<-hermitairdwater3.totals$V3/cinf3.hermitwater
+hermitairdwater3.totals$V3<-hermitairdwater3.totals$V3/hermit.d
+hermitwaterdair3.totals$V3<-hermitwaterdair3.totals$V3/cinf3.hermitair
+hermitwaterdair3.totals$V3<-hermitwaterdair3.totals$V3/hermit.d
+
+# Creates C/Cinf for per time step data, Condition 2
+hermitwater23.perstepdata$C<-hermitwater23.perstepdata$V2/cinf3.hermitwater
+hermitair23.perstepdata$C<-hermitair23.perstepdata$V2/cinf3.hermitair
+hermitwaterTswap3.perstepdata$C<-hermitwaterTswap3.perstepdata$V2/cinf3.hermitwater
+hermitairTswap3.perstepdata$C<-hermitairTswap3.perstepdata$V2/cinf3.hermitair
+
+
+
+# Adjusts for capture distance.
+hermitwater23.perstepdata$Cadj<-hermitwater23.perstepdata$C/hermit.d
+hermitair23.perstepdata$Cadj<-hermitair23.perstepdata$C/hermit.d
+hermitwaterTswap3.perstepdata$Cadj<-hermitwaterTswap3.perstepdata$C/hermit.d
+hermitairTswap3.perstepdata$Cadj<-hermitairTswap3.perstepdata$C/hermit.d
+
+# Creates C/Cinf for per hair data, Condition 2
+hermitwater23.totals$V3<-hermitwater23.totals$V3/cinf3.hermitwater
+hermitwater23.totals$V3<-hermitwater23.totals$V3/hermit.d  #Uncomment for standardizing per hair data by capture area
+hermitair23.totals$V3<-hermitair23.totals$V3/cinf3.hermitair
+hermitair23.totals$V3<-hermitair23.totals$V3/hermit.d      #Uncomment for standardizing per hair data by capture area
+hermitwaterTswap3.totals$V3<-hermitwaterTswap3.totals$V3/cinf3.hermitwater
+hermitwaterTswap3.totals$V3<-hermitwaterTswap3.totals$V3/hermit.d  #Uncomment for standardizing per hair data by capture area
+hermitairTswap3.totals$V3<-hermitairTswap3.totals$V3/cinf3.hermitair
+hermitairTswap3.totals$V3<-hermitairTswap3.totals$V3/hermit.d      #Uncomment for standardizing per hair data by capture area
+
+
+##############
+##############
+
+
