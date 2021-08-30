@@ -928,4 +928,60 @@ marinewaterTswaptotals<-findMeans(marinewaterTswap1.totals$V1,marinewaterTswap1.
 
 
 
+###############################
+##### Thin filament plot ######
+
+#calculate mean at each time step
+
+hermitair1<-findMeans(hermitair11.perstepdata$V1,hermitair11.perstepdata$Cadj/hermitair1.d,hermitair12.perstepdata$V1,hermitair12.perstepdata$Cadj/hermitair1.d,hermitair13.perstepdata$V1,hermitair13.perstepdata$Cadj/hermitair1.d)
+
+hermitwater1<-findMeans(hermitwater11.perstepdata$V1,hermitwater11.perstepdata$Cadj/hermitwater1.d,hermitwater12.perstepdata$V1,hermitwater12.perstepdata$Cadj/hermitwater1.d,hermitwater13.perstepdata$V1,hermitwater13.perstepdata$Cadj/hermitwater1.d)
+
+marineair1<-findMeans(marineair11.perstepdata$V1,marineair11.perstepdata$Cadj/marineair1.d,marineair12.perstepdata$V1,marineair12.perstepdata$Cadj/marineair1.d,marineair13.perstepdata$V1,marineair13.perstepdata$Cadj/marineair1.d) 
+
+marinewater1<-findMeans(marinewater11.perstepdata$V1,marinewater11.perstepdata$Cadj/marinewater1.d,marinewater12.perstepdata$V1,marinewater12.perstepdata$Cadj/marinewater1.d,marinewater13.perstepdata$V1,marinewater13.perstepdata$Cadj/marinewater1.d)
+
+
+
+hermitairdwater<-findMeans2(hermitairdwater2.perstepdata$V1,hermitairdwater2.perstepdata$Cadj/hermitairdwater.d,hermitairdwater3.perstepdata$V1,hermitairdwater3.perstepdata$Cadj/hermitairdwater.d)
+
+hermitwaterdair<-findMeans(hermitwaterdair1.perstepdata$V1,hermitwaterdair1.perstepdata$Cadj/hermitwaterdair.d,hermitwaterdair2.perstepdata$V1,hermitwaterdair2.perstepdata$Cadj/hermitwaterdair.d,hermitwaterdair3.perstepdata$V1,hermitwaterdair3.perstepdata$Cadj/hermitwaterdair.d)
+
+marineairdwater<-findMeans(marineairdwater1.perstepdata$V1,marineairdwater1.perstepdata$Cadj/marineairdwater.d,marineairdwater2.perstepdata$V1,marineairdwater2.perstepdata$Cadj/marineairdwater.d,marineairdwater3.perstepdata$V1,marineairdwater3.perstepdata$Cadj/marineairdwater.d)
+
+marinewaterdair<-findMeans(marinewaterdair1.perstepdata$V1,marinewaterdair1.perstepdata$Cadj/marinewaterdair.d,marinewaterdair2.perstepdata$V1,marinewaterdair2.perstepdata$Cadj/marinewaterdair.d,marinewaterdair3.perstepdata$V1,marinewaterdair3.perstepdata$Cadj/marinewaterdair.d)
+
+
+
+
+
+
+
+###############################
+##### Thick filament plot ######
+
+#calculate mean at each time step
+
+hermitair2<-findMeans(hermitair21.perstepdata$V1,hermitair21.perstepdata$Cadj/hermitair2.d,hermitair22.perstepdata$V1,hermitair22.perstepdata$Cadj/hermitair2.d,hermitair23.perstepdata$V1,hermitair23.perstepdata$Cadj/hermitair2.d)
+
+hermitwater2<-findMeans(hermitwater21.perstepdata$V1,hermitwater21.perstepdata$Cadj/hermitwater2.d,hermitwater22.perstepdata$V1,hermitwater22.perstepdata$Cadj/hermitwater2.d,hermitwater23.perstepdata$V1,hermitwater23.perstepdata$Cadj/hermitwater2.d)
+
+marineair2<-findMeans(marineair21.perstepdata$V1,marineair21.perstepdata$Cadj/marineair2.d,marineair22.perstepdata$V1,marineair22.perstepdata$Cadj/marineair2.d,marineair23.perstepdata$V1,marineair23.perstepdata$Cadj/marineair2.d)
+
+marinewater2<-findMeans(marinewater21.perstepdata$V1,marinewater21.perstepdata$Cadj/marinewater2.d,marinewater22.perstepdata$V1,marinewater22.perstepdata$Cadj/marinewater2.d,marinewater23.perstepdata$V1,marinewater23.perstepdata$Cadj/marinewater2.d)
+
+hermitairTswap<-findMeans(hermitairTswap1.perstepdata$V1,hermitairTswap1.perstepdata$Cadj/hermitairTswap.d,hermitairTswap2.perstepdata$V1,hermitairTswap2.perstepdata$Cadj/hermitairTswap.d,hermitairTswap3.perstepdata$V1,hermitairTswap3.perstepdata$Cadj/hermitairTswap.d)
+
+hermitwaterTswap<-findMeans(hermitwaterTswap1.perstepdata$V1,hermitwaterTswap1.perstepdata$Cadj/hermitwaterTswap.d,hermitwaterTswap2.perstepdata$V1,hermitwaterTswap2.perstepdata$Cadj/hermitwaterTswap.d,hermitwaterTswap3.perstepdata$V1,hermitwaterTswap3.perstepdata$Cadj/hermitwaterTswap.d)
+
+marineairTswap<-findMeans(marineairTswap1.perstepdata$V1,marineairTswap1.perstepdata$Cadj/marineairTswap.d,marineairTswap2.perstepdata$V1,marineairTswap2.perstepdata$Cadj/marineairTswap.d,marineairTswap3.perstepdata$V1,marineairTswap3.perstepdata$Cadj/marineairTswap.d)
+
+marinewaterTswap<-findMeans(marinewaterTswap1.perstepdata$V1,marinewaterTswap1.perstepdata$Cadj/marinewaterTswap.d,marinewaterTswap2.perstepdata$V1,marinewaterTswap2.perstepdata$Cadj/marinewaterTswap.d,marinewaterTswap3.perstepdata$V1,marinewaterTswap3.perstepdata$Cadj/marinewaterTswap.d)
+
+
+
+
+
+
+
 
